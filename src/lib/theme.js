@@ -12,6 +12,7 @@ const styles = {
 const config = {
 	initialColorMode: 'dark',
 	useSystemColorMode: false,
+	disableTransitionOnChange: false,
 };
 
 const theme = extendTheme({

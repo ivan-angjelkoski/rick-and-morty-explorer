@@ -6,7 +6,10 @@ import DarkModeSwitch from './DarkModeSwitch';
 
 const Navbar = () => {
 	return (
-		<Box as="nav">
+		<Box
+			as="nav"
+			shadow="sm"
+		>
 			<Container maxW="5xl">
 				<HStack
 					justifyContent={'space-between'}
