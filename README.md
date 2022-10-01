@@ -1,0 +1,3 @@
+# Rick And Morty Exlorer
+
+Built with React,GraphQl,Chakra-Ui,Framer-Motion...
