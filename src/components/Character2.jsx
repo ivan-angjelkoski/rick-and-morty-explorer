@@ -9,9 +9,12 @@ import {
 } from '@chakra-ui/react';
 import { isValidMotionProp, motion } from 'framer-motion';
 import React, { useState } from 'react';
-import { Link as ReactLink, Navigate, useNavigate } from 'react-router-dom';
+import { Link as ReactLink } from 'react-router-dom';
 
 const ChakraBox = chakra(motion.div, {
+	/**
+	 * Allow motion props and non-Chakra props to be forwarded.
+	 */
 	shouldForwardProp: (prop) =>
 		isValidMotionProp(prop) || shouldForwardProp(prop),
 });
@@ -23,33 +26,32 @@ const characterVariation = {
 };
 
 const Character = ({ character }) => {
-	const navigate = useNavigate();
 	const [isEntered, setIsEntered] = useState(false);
 	return (
-		<ChakraBox
+		<ReactLink
 			onMouseEnter={() => {
 				setIsEntered(true);
 			}}
 			onMouseLeave={() => {
 				setIsEntered(false);
 			}}
-			sx={{ transition: 'border 0.2s' }}
-			rounded={8}
-			border="2px"
-			_hover={{ borderColor: '#007bff88' }}
-			borderColor={'#88888833'}
-			overflow="hidden"
-			variants={characterVariation}
-			height={'full'}
-			display="flex"
-			flexDir={'column'}
-			maxW="300px"
-			w="full"
-			mx="auto"
+			to={`/character/${character.id}`}
+			style={{ maxWidth: '400px', width: '100%', margin: 'auto' }}
 		>
-			<ReactLink
-				to={`/character/${character.id}`}
-				style={{ height: '100%' }}
+			<ChakraBox
+				sx={{ transition: 'border 0.2s' }}
+				rounded={8}
+				border="2px"
+				_hover={{ borderColor: '#007bff88' }}
+				borderColor={'#88888833'}
+				overflow="hidden"
+				variants={characterVariation}
+				height={'full'}
+				display="flex"
+				flexDir={'column'}
+				// maxW="300px"
+				// w="full"
+				// mx="auto"
 			>
 				<Img src={character.image} />
 				<Box p={2}>
@@ -92,8 +94,8 @@ const Character = ({ character }) => {
 					</Heading>
 					<Text opacity={0.7}>{character.location.name}</Text>
 				</Box>
-			</ReactLink>
-		</ChakraBox>
+			</ChakraBox>
+		</ReactLink>
 	);
 };
 
