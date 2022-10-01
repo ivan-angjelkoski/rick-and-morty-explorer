@@ -31,7 +31,7 @@ const SEARCH_CHARACTERS = gql`
 
 const useSearchCharacter = (name, page) => {
 	const { data, loading, error } = useQuery(SEARCH_CHARACTERS, {
-		variables: { name, page },
+		variables: { name: name ?? '', page },
 	});
 	return { data, loading, error };
 };

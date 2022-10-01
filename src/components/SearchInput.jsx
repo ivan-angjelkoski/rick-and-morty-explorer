@@ -10,7 +10,11 @@ const SearchInput = () => {
 	const [text, setText] = useState('');
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		navigate(`/character/search/${text}`);
+		if (text == '') {
+			navigate(`/`);
+		} else {
+			navigate(`/character/search/${text}`);
+		}
 	};
 	return (
 		<chakra.form
