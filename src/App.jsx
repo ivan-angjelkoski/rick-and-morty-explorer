@@ -6,6 +6,7 @@ import PageTransition from './components/utility/PageTransition';
 import { AnimatePresence } from 'framer-motion';
 import Search from './pages/Search';
 import { Container } from '@chakra-ui/react';
+import Footer from './components/Footer';
 
 function App() {
 	const location = useLocation();
@@ -56,6 +57,7 @@ function App() {
 					</Routes>
 				</AnimatePresence>
 			</Container>
+			<Footer />
 		</>
 	);
 }

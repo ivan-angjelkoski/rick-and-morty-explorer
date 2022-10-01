@@ -1,8 +1,8 @@
 import { gql, useQuery } from '@apollo/client';
 
-const GET_CHARACTERS = gql`
-	query getCharacters($page: Int!) {
-		characters(page: $page) {
+const SEARCH_CHARACTERS = gql`
+	query searchCharacters($name: String, $page: Int) {
+		characters(filter: { name: $name }, page: $page) {
 			results {
 				name
 				id
@@ -29,11 +29,11 @@ const GET_CHARACTERS = gql`
 	}
 `;
 
-const useCharacters = (page) => {
-	const { data, loading, error } = useQuery(GET_CHARACTERS, {
-		variables: { page },
+const useSearchCharacter = (name, page) => {
+	const { data, loading, error } = useQuery(SEARCH_CHARACTERS, {
+		variables: { name, page },
 	});
 	return { data, loading, error };
 };
 
-export default useCharacters;
+export default useSearchCharacter;

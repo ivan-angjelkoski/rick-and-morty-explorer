@@ -1,8 +1,17 @@
-import { Box, Center, Heading, SimpleGrid, Spinner } from '@chakra-ui/react';
-import React from 'react';
+import {
+	Box,
+	Button,
+	Center,
+	Heading,
+	HStack,
+	SimpleGrid,
+	Spinner,
+} from '@chakra-ui/react';
+import React, { useState } from 'react';
 import Character from '../components/Character';
 import useCharacters from '../hooks/useCharacters';
 import { AnimatePresence, motion } from 'framer-motion';
+import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons';
 
 const gridVariants = {
 	initial: { y: -20, opacity: 0 },
@@ -15,7 +24,8 @@ const gridVariants = {
 };
 
 const Home = () => {
-	const { data, error, loading } = useCharacters();
+	const [page, setPage] = useState(1);
+	const { data, error, loading } = useCharacters(page);
 	if (loading) {
 		return (
 			<Center>
@@ -38,6 +48,28 @@ const Home = () => {
 	}
 	return (
 		<Box py={3}>
+			<HStack my={3}>
+				<Button
+					colorScheme={'blue'}
+					onClick={() => {
+						setPage((p) => p - 1);
+					}}
+					disabled={page == 1}
+					leftIcon={<ChevronLeftIcon />}
+				>
+					Prev
+				</Button>
+				<Button
+					colorScheme={'blue'}
+					onClick={() => {
+						setPage((p) => p + 1);
+					}}
+					disabled={!data.characters.info.next}
+					rightIcon={<ChevronRightIcon />}
+				>
+					Next
+				</Button>
+			</HStack>
 			<AnimatePresence initial={true}>
 				<SimpleGrid
 					variants={gridVariants}
