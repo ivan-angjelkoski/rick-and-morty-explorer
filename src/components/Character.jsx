@@ -36,7 +36,7 @@ const Character = ({ character }) => {
 				setIsEntered(false);
 			}}
 			to={`/character/${character.id}`}
-			style={{ maxWidth: '300px', width: '100%', margin: 'auto' }}
+			style={{ maxWidth: '400px', width: '100%', margin: 'auto' }}
 		>
 			<ChakraBox
 				sx={{ transition: 'border 0.2s' }}

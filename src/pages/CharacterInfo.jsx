@@ -50,6 +50,7 @@ const CharacterInfo = () => {
 				onClick={back}
 				colorScheme="blue"
 				leftIcon={<ChevronLeftIcon />}
+				my={3}
 			>
 				Back
 			</Button>
