@@ -6,19 +6,19 @@ import {
 	HStack,
 	SimpleGrid,
 	Spinner,
-} from '@chakra-ui/react';
-import React, { useState } from 'react';
-import Character from '../components/Character';
-import useCharacters from '../hooks/useCharacters';
-import { AnimatePresence, motion } from 'framer-motion';
-import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons';
+} from "@chakra-ui/react";
+import React, { useState } from "react";
+import Character from "../components/Character";
+import useCharacters from "../hooks/useCharacters";
+import { AnimatePresence, LayoutGroup, motion } from "framer-motion";
+import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 
 const gridVariants = {
 	initial: { y: -20, opacity: 0 },
 	animate: {
 		y: 0,
 		opacity: 1,
-		transition: { staggerChildren: 0.1, delayChildren: 0.2 },
+		transition: { staggerChildren: 0, delayChildren: 0.2 },
 	},
 	exit: { y: -20, opacity: 0 },
 };
@@ -30,7 +30,7 @@ const Home = () => {
 		return (
 			<Center>
 				<Spinner
-					size={'xl'}
+					size={"xl"}
 					m={3}
 				/>
 			</Center>
@@ -39,7 +39,7 @@ const Home = () => {
 	if (error) {
 		return (
 			<Heading
-				textAlign={'center'}
+				textAlign={"center"}
 				m={3}
 			>
 				Error Loading Data...
@@ -50,7 +50,7 @@ const Home = () => {
 		<Box py={3}>
 			<HStack my={3}>
 				<Button
-					colorScheme={'blue'}
+					colorScheme={"blue"}
 					onClick={() => {
 						setPage((p) => p - 1);
 					}}
@@ -60,7 +60,7 @@ const Home = () => {
 					Prev
 				</Button>
 				<Button
-					colorScheme={'blue'}
+					colorScheme={"blue"}
 					onClick={() => {
 						setPage((p) => p + 1);
 					}}
@@ -70,26 +70,18 @@ const Home = () => {
 					Next
 				</Button>
 			</HStack>
-			<AnimatePresence initial={true}>
-				<SimpleGrid
-					variants={gridVariants}
-					initial="initial"
-					animate="animate"
-					exit="exit"
-					as={motion.div}
-					// placeItems={'center'}
-					templateColumns={{ base: '1fr', md: '1fr 1fr', lg: '1fr 1fr 1fr' }}
-					gap={3}
-				>
-					{data.characters.results.map((character) => (
-						<Character
-							key={character.id}
-							character={character}
-						/>
-					))}
-				</SimpleGrid>
-				{/* {Pagination} */}
-			</AnimatePresence>
+			<SimpleGrid
+				templateColumns={{ base: "1fr", md: "1fr 1fr", lg: "1fr 1fr 1fr" }}
+				gap={3}
+			>
+				{data.characters.results.map((character, i) => (
+					<Character
+						key={character.id}
+						character={character}
+						index={i}
+					/>
+				))}
+			</SimpleGrid>
 		</Box>
 	);
 };

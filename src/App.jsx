@@ -1,21 +1,21 @@
-import { Routes, Route, useLocation } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import CharacterInfo from './pages/CharacterInfo';
-import Home from './pages/Home';
-import PageTransition from './components/utility/PageTransition';
-import { AnimatePresence } from 'framer-motion';
-import Search from './pages/Search';
-import { Container } from '@chakra-ui/react';
-import Footer from './components/Footer';
+import { Routes, Route, useLocation } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import CharacterInfo from "./pages/CharacterInfo";
+import Home from "./pages/Home";
+import PageTransition from "./components/utility/PageTransition";
+import { AnimatePresence } from "framer-motion";
+import Search from "./pages/Search";
+import { Container } from "@chakra-ui/react";
+import Footer from "./components/Footer";
 
 function App() {
 	const location = useLocation();
 	return (
 		<>
 			<Navbar />
-			<Container maxW="4xl">
+			<Container maxW='4xl'>
 				<AnimatePresence
-					mode="wait"
+					mode='wait'
 					initial={false}
 				>
 					<Routes
@@ -23,7 +23,7 @@ function App() {
 						key={location.pathname}
 					>
 						<Route
-							path="/"
+							path='/'
 							element={
 								<PageTransition>
 									<Home />
@@ -31,7 +31,7 @@ function App() {
 							}
 						/>
 						<Route
-							path="/character/:id"
+							path='/character/:id'
 							element={
 								<PageTransition>
 									<CharacterInfo />
@@ -39,7 +39,7 @@ function App() {
 							}
 						/>
 						<Route
-							path="/character/:id"
+							path='/character/:id'
 							element={
 								<PageTransition>
 									<CharacterInfo />
@@ -47,7 +47,7 @@ function App() {
 							}
 						/>
 						<Route
-							path="/character/search/:name"
+							path='/character/search/:name'
 							element={
 								<PageTransition>
 									<Search />
